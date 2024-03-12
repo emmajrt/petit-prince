@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Connexion
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img class="custom-avatar" src="../assets/big-logo.png" alt="Photo Petit Prince"></ion-img>
+  <ion-item>
+    <ion-label position="floating">Login</ion-label>
+    <ion-input type="text" [(ngModel)]="login"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Mot de passe</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Se souvenir de moi</ion-label>
+    <ion-checkbox color=tertiary [(ngModel)]="rememberMe"></ion-checkbox>
+  </ion-item>
+  <ion-button color=tertiary expand="block" (click)="submitLogin()">Se connecter</ion-button>
+</ion-content>
+

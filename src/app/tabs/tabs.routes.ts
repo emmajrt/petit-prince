@@ -9,28 +9,34 @@ export const routes: Routes = [
       {
         path: 'tab1',
         loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+          import('../tab1/tab1.page').then(m => m.Tab1Page),
       },
       {
         path: 'tab2',
         loadComponent: () =>
-          import('../tab2/tab2.page').then((m) => m.Tab2Page),
+          import('../tab2/tab2.page').then(m => m.Tab2Page),
       },
       {
         path: 'tab3',
         loadComponent: () =>
-          import('../tab3/tab3.page').then((m) => m.Tab3Page),
+          import('../tab3/tab3.page').then(m => m.Tab3Page),
       },
       {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full',
+        path: 'tab4',
+        loadComponent: () =>
+          import('../tab4/tab4.page').then(m => m.Tab4Page),
       },
     ],
   },
   {
+    path: 'login',
+    loadComponent: () =>
+      import('../login/login.page').then(m => m.LoginPage),
+  },
+  {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
 ];
+
