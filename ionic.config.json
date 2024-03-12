@@ -1,0 +1,7 @@
+{
+  "name": "petit-prince",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
