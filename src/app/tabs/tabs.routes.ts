@@ -7,24 +7,24 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'articles',
         loadComponent: () =>
-          import('../tab1/tab1.page').then(m => m.Tab1Page),
+          import('../articles/articles.page').then(m => m.ArticlesPage),
       },
       {
-        path: 'tab2',
+        path: 'galeries',
         loadComponent: () =>
-          import('../tab2/tab2.page').then(m => m.Tab2Page),
+          import('../galeries/galeries.page').then(m => m.GaleriesPage),
       },
       {
-        path: 'tab3',
+        path: 'dates',
         loadComponent: () =>
-          import('../tab3/tab3.page').then(m => m.Tab3Page),
+          import('../dates/dates.page').then(m => m.DatesPage),
       },
       {
-        path: 'tab4',
+        path: 'contact',
         loadComponent: () =>
-          import('../tab4/tab4.page').then(m => m.Tab4Page),
+          import('../contact/contact.page').then(m => m.ContactPage),
       },
     ],
   },
