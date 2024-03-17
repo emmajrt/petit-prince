@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Nous Contacter</ion-title>
+    <ion-title>Infos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Nous Contacter</ion-title>
+      <ion-title size="large">Infos</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-card color="tertiary">
@@ -32,4 +32,13 @@
       contact&#64;lepetitprince.fr
     </ion-card-content> 
   </ion-card>
+  <div class="ion-text-center">
+    <div>
+      <ion-button fill="outline" color="tertiary" href="/login" size="small">Se déconnecter</ion-button>
+    </div>
+    <div>
+      <ion-button fill="outline" color="tertiary" (click)="showTutorial()" size="small">Afficher le tutoriel</ion-button>
+    </div>
+  </div>
+
 </ion-content>

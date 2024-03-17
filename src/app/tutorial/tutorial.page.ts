@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { addIcons } from 'ionicons';
-import { arrowForwardOutline } from 'ionicons/icons';
+import { arrowForwardOutline, bookOutline, bookmark, bookmarkOutline, imagesOutline, calendarOutline, informationCircleOutline } from 'ionicons/icons';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -17,7 +17,7 @@ import { NavController } from '@ionic/angular';
 })
 export class TutorialPage implements OnInit {
   constructor(private navCtrl: NavController) {
-    addIcons({ arrowForwardOutline });
+    addIcons({ arrowForwardOutline, bookOutline, bookmark, bookmarkOutline, imagesOutline, calendarOutline, informationCircleOutline });
   }
 
   ngOnInit() {

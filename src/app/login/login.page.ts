@@ -54,7 +54,7 @@ export class LoginPage {
                 sessionStorage.setItem('login', this.login);
                 sessionStorage.setItem('password', this.password);
               }
-              this.navCtrl.navigateRoot('/tutorial');
+              this.showTutorial();
             } else {
               this.showErrorToast('Login ou mot de passe incorrect');
             }
@@ -89,5 +89,14 @@ export class LoginPage {
       ]
     });
     toast.present();
+  }
+
+  showTutorial() {
+    const hasSeenTutorial = localStorage.getItem('hasSeenTutorial');
+    if (hasSeenTutorial) {
+      this.navCtrl.navigateRoot('/tabs/articles');
+    } else {
+    this.navCtrl.navigateRoot('/tutorial');
+    }
   }
 }

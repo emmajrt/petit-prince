@@ -4,16 +4,19 @@ import { CommonModule } from '@angular/common';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-galeries',
   templateUrl: 'galeries.page.html',
   styleUrls: ['galeries.page.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   standalone: true,
   imports: [ExploreContainerComponent, IonicModule, CommonModule],
 })
 export class GaleriesPage implements OnInit {
   galeries: any[] = [];
+  selectedPhoto: string = '';
 
   constructor(private http: HttpClient) {
   }
@@ -41,6 +44,14 @@ export class GaleriesPage implements OnInit {
     } else {
       console.error('Login ou mot de passe non trouvé dans le stockage local');
     }
+  }
+
+  showPhoto(photo: any) {
+    this.selectedPhoto = 'https://sebastien-thon.fr/prince/images/' + photo.image;
+  }
+
+  closePhoto() {
+    this.selectedPhoto = '';
   }
 }
 

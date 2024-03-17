@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-contact',
@@ -12,9 +13,13 @@ import { IonicModule } from '@ionic/angular';
 })
 export class ContactPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }
 
+  showTutorial() {
+    localStorage.removeItem('hasSeenTutorial');
+    this.navCtrl.navigateRoot('/tutorial');
+  }
 }
