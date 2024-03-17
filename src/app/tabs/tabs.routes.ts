@@ -25,13 +25,17 @@ export const routes: Routes = [
         path: 'contact',
         loadComponent: () =>
           import('../contact/contact.page').then(m => m.ContactPage),
-      },
+      }
     ],
   },
   {
     path: 'login',
     loadComponent: () =>
       import('../login/login.page').then(m => m.LoginPage),
+  },
+  {
+    path: 'tutorial',
+    loadComponent: () => import('../tutorial/tutorial.page').then( m => m.TutorialPage)
   },
   {
     path: '',

@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NavController, ToastController } from '@ionic/angular';
 import { catchError, tap } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -33,51 +34,60 @@ export class LoginPage {
   }
 
   async submitLogin() {
-    const url = 'http://www.sebastien-thon.fr/prince/index.php?connexion';
+    const url = 'https://sebastien-thon.fr/prince/index.php?connexion';
     const params = {
       login: this.login,
       mdp: this.password
     };
 
-this.http.get<any>(url, { params }).pipe(
-  tap((response) => {
-    if (response.resultat === 'OK') {
-      if (this.rememberMe) {
-        localStorage.setItem('login', this.login);
-        localStorage.setItem('password', this.password);
-      } else {
-        localStorage.removeItem('login');
-        localStorage.removeItem('password');
-      }
-      this.navCtrl.navigateRoot('/tabs/articles');
-    } else {
-      this.showErrorToast('Login ou mot de passe incorrect');
-    }
-  }),
-  catchError((error) => {
-    console.error('Une erreur est survenue lors de la connexion : ', error);
-    this.showErrorToast('Une erreur est survenue lors de la connexion');
-    throw error;
-  })
-).toPromise();
-}
+    try {
+      const response = await firstValueFrom(
+        this.http.get<any>(url, { params }).pipe(
+          tap((response) => {
+            if (response.resultat === 'OK') {
+              if (this.rememberMe) {
+                localStorage.setItem('login', this.login);
+                localStorage.setItem('password', this.password);
+              } else {
+                localStorage.removeItem('login');
+                localStorage.removeItem('password');
+                sessionStorage.setItem('login', this.login);
+                sessionStorage.setItem('password', this.password);
+              }
+              this.navCtrl.navigateRoot('/tutorial');
+            } else {
+              this.showErrorToast('Login ou mot de passe incorrect');
+            }
+          }),
+          catchError((error) => {
+            console.error('Une erreur est survenue lors de la connexion : ', error);
+            this.showErrorToast('Une erreur est survenue lors de la connexion');
+            throw error;
+          })
+        )
+      );
 
-async showErrorToast(message: string) {
-const toast = await this.toastController.create({
-  message: message,
-  duration: 2500,
-  color: 'danger',
-  position: 'bottom',
-  buttons: [
-    {
-      text: 'OK',
-      role: 'cancel',
-      handler: () => {
-        console.log('Toast fermé');
-      }
+    } catch (error) {
+      console.error('Une erreur est survenue lors de la connexion : ', error);
     }
-  ]
-});
-toast.present();
-}
+  }
+
+  async showErrorToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2500,
+      color: 'danger',
+      position: 'bottom',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+          handler: () => {
+            console.log('Toast fermé');
+          }
+        }
+      ]
+    });
+    toast.present();
+  }
 }

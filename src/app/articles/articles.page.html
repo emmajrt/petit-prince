@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Articles
-    </ion-title>
+    <ion-title>Articles</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,6 +9,22 @@
     <ion-toolbar>
       <ion-title size="large">Articles</ion-title>
     </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar [(ngModel)]="searchText" (input)="handleInput($event)"></ion-searchbar>
+    </ion-toolbar>
   </ion-header>
+  
+  <ion-card *ngFor="let article of filteredArticles" color="tertiary">
+    <ion-img *ngFor="let photo of article.photos" [src]="'https://sebastien-thon.fr/prince/images/' + photo.image" [alt]="photo.legende"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ article.titre }}</ion-card-title>
+      <ion-card-subtitle>{{ article.categorie }}</ion-card-subtitle>
+      <ion-card-subtitle>{{ article.date | date: 'dd/MM/yyyy HH:mm' }}</ion-card-subtitle>
+      <ion-icon *ngIf="article.important" name="warning-outline" color="dark" size="large"></ion-icon>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ article.texte }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>  
 
-</ion-content>
