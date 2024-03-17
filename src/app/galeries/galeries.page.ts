@@ -5,6 +5,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RefresherEventDetail } from '@ionic/core';
 
 @Component({
   selector: 'app-galeries',
@@ -22,6 +23,10 @@ export class GaleriesPage implements OnInit {
   }
 
   async ngOnInit() {
+    this.loadGaleries();
+  }
+
+  async loadGaleries() {
     const savedLogin = localStorage.getItem('login') || sessionStorage.getItem('login');
     const savedPassword = localStorage.getItem('password') || sessionStorage.getItem('password');
   
@@ -52,6 +57,12 @@ export class GaleriesPage implements OnInit {
 
   closePhoto() {
     this.selectedPhoto = '';
+  }
+
+  doRefresh(event: CustomEvent<RefresherEventDetail>) {
+    this.loadGaleries().then(() => {
+      (event.target as HTMLIonRefresherElement).complete();
+    });
   }
 }
 

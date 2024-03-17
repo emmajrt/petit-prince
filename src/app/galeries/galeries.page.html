@@ -13,6 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let galerie of galeries" color="tertiary" >
     <ion-card-header>
       <ion-card-title>{{ galerie.titre }}</ion-card-title>

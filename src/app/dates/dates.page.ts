@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { addIcons } from 'ionicons';
 import { calendarNumberOutline } from 'ionicons/icons';
+import { RefresherEventDetail } from '@ionic/core';
 
 @Component({
   selector: 'app-dates',
@@ -21,7 +22,11 @@ export class DatesPage implements OnInit {
     addIcons({ calendarNumberOutline});
   }
 
-  async ngOnInit() {
+  async ngOnInit() {  
+    this.loadDates();
+  }
+
+  async loadDates() {
     const savedLogin = localStorage.getItem('login') || sessionStorage.getItem('login');
     const savedPassword = localStorage.getItem('password') || sessionStorage.getItem('password');
 
@@ -44,6 +49,12 @@ export class DatesPage implements OnInit {
     } else {
       console.error('Login ou mot de passe non trouvé dans le stockage local');
     }
+  }
+
+  doRefresh(event: CustomEvent<RefresherEventDetail>) {
+    this.loadDates().then(() => {
+      (event.target as HTMLIonRefresherElement).complete();
+    });
   }
 }
 

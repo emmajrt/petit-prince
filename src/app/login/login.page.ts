@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular/standalone';
 import { catchError, tap } from 'rxjs/operators';
 import { firstValueFrom } from 'rxjs';
 

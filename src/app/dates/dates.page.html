@@ -13,6 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let date of dates" color="tertiary">
     <ion-icon name="calendar-number-outline" size="large"></ion-icon>
     <ion-card-header>
