@@ -28,8 +28,6 @@ export class ArticlesPage implements OnInit {
 
   async ngOnInit() {
     this.loadArticles();
-    this.loadFavorites();
-    this.filterArticles();
   }
 
   async loadArticles() {
@@ -48,7 +46,6 @@ export class ArticlesPage implements OnInit {
           this.articles = response.articles;
           this.filteredArticles = [...this.articles];
           this.loadFavorites();
-          this.filterArticles();
         }
       } catch (error) {
         console.error('Une erreur est survenue lors de la récupération des articles : ', error);
